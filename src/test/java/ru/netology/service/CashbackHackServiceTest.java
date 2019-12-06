@@ -1,11 +1,14 @@
 package ru.netology.service;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CashbackHackServiceTest {
-    @Test
+    @ParameterizedTest
+
     void shouldReturn100IfAmountIs900() {
         CashbackHackService cashbackHackService100 = new CashbackHackService();
         int amount = 900;
@@ -25,11 +28,19 @@ public class CashbackHackServiceTest {
 
     @Test
     void shouldReturn500IfAmountIs500() {
-        CashbackHackService cashbackHackService0 = new CashbackHackService();
+        CashbackHackService cashbackHackService500 = new CashbackHackService();
         int amount = 500;
-        int actual = cashbackHackService0.remain(amount);
+        int actual = cashbackHackService500.remain(amount);
         int expected = 500;
         assertEquals(expected, actual);
     }
+
+
+    @Test
+    void shouldReturnThrowIfAmountIs0() {
+        CashbackHackService cashbackHackServiceThrow = new CashbackHackService();
+        assertThrows(IllegalArgumentException.class, () -> cashbackHackServiceThrow.remain(amount))
+    }
+
 }
 
